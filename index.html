@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>互动实验室 · Economics &amp; Statistics Club</title>
+<style>
+  :root {
+    --ink: #141414;
+    --ink-2: #6F6F7A;
+    --ink-3: #A3A3AE;
+    --card: #F3F3F6;
+    --line: #E2E2EA;
+    --orange: #F6A03C;
+    --coral: #F2606F;
+    --magenta: #D54CA9;
+    --purple: #9B52EF;
+    --grad: linear-gradient(90deg, #FFB84D 0%, #F85C7A 50%, #A54AF5 100%);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    background: #ffffff;
+    color: var(--ink);
+    font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", "Noto Sans SC", system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  .bar { height: 6px; background: var(--grad); }
+  main { max-width: 640px; margin: 0 auto; padding: 28px 16px 40px; }
+  .eyebrow { font-size: 11px; letter-spacing: .24em; color: var(--ink-3); font-weight: 600; text-transform: uppercase; }
+  h1 { margin-top: 10px; font-size: 34px; line-height: 1.2; font-weight: 800; letter-spacing: .01em; }
+  h1 small { display: block; margin-top: 4px; font-size: 14px; letter-spacing: .18em; color: #EE8A3C; font-weight: 700; text-transform: uppercase; }
+  .lead { margin-top: 14px; color: #34343C; font-size: 16px; }
+  .card { margin-top: 18px; background: var(--card); border-radius: 22px; padding: 18px; }
+  .row { display: flex; align-items: center; gap: 14px; }
+  .badge {
+    flex: none; width: 48px; height: 48px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-weight: 800; font-size: 18px; background: var(--grad);
+  }
+  .card h2 { font-size: 18px; line-height: 1.35; font-weight: 800; }
+  .card p { color: #34343C; font-size: 15px; }
+  .muted { color: var(--ink-2); font-size: 14px; }
+  .btns { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+  button {
+    font: inherit; font-weight: 700; font-size: 16px; color: #fff;
+    border: 0; border-radius: 999px; padding: 12px 20px; min-height: 46px; cursor: pointer;
+    background: var(--ink);
+    -webkit-tap-highlight-color: transparent;
+  }
+  button.alt { background: #fff; color: var(--ink); border: 2px solid var(--line); }
+  button.ghost { background: transparent; color: var(--ink-2); border: 0; padding: 12px 6px; font-weight: 600; }
+  button:active { transform: scale(.97); }
+  .result {
+    margin-top: 14px; background: #fff; border-radius: 16px; padding: 14px 16px;
+    min-height: 56px; display: flex; align-items: center; gap: 12px;
+  }
+  .chipbox { flex: none; width: 34px; height: 34px; border-radius: 10px; background: var(--line); }
+  .chipbox.hidden { background: var(--grad); }
+  .result .txt { font-size: 16px; font-weight: 700; }
+  .result .txt span { font-weight: 500; color: var(--ink-2); font-size: 14px; display: block; }
+  .grid {
+    margin-top: 12px; display: grid; grid-template-columns: repeat(12, 1fr); gap: 5px;
+  }
+  .grid i { display: block; aspect-ratio: 1 / 1; border-radius: 5px; background: var(--line); }
+  .grid i.hidden { background: var(--grad); box-shadow: 0 0 0 2px #fff, 0 0 0 4px #F85C7A; }
+  .stats { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 8px; }
+  .pill { border: 2px solid var(--line); border-radius: 999px; padding: 4px 12px; font-size: 14px; font-weight: 700; background: #fff; }
+  .pop { animation: pop .28s ease-out; }
+  @keyframes pop { from { transform: scale(.92); opacity: .4; } to { transform: scale(1); opacity: 1; } }
+  footer { margin-top: 26px; padding-top: 16px; border-top: 1px solid var(--line); }
+  footer p { font-size: 13px; color: var(--ink-2); }
+  footer .club { font-size: 11px; letter-spacing: .24em; color: var(--ink-3); font-weight: 600; margin-top: 8px; }
+  .ok { display: inline-block; margin-top: 6px; font-size: 13px; font-weight: 700; color: #1F9D55; }
+</style>
+</head>
+<body>
+<div class="bar"></div>
+<main>
+  <div class="eyebrow">Economics &amp; Statistics Club</div>
+  <h1>互动实验室<small>Interactive Lab</small></h1>
+  <p class="lead">这里会放每期社团课用到的小游戏和小工具，打开手机浏览器就能玩，课后也可以随时回来再试一次。</p>
+
+  <section class="card">
+    <div class="row">
+      <div class="badge">05</div>
+      <div>
+        <h2>第 05 期 · 盲盒卖家模拟器</h2>
+        <p class="muted">正在制作中，11 月 5 日社团课上见。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="card" id="lab">
+    <h2>先来试试手气</h2>
+    <p>这里的每个盲盒，开出隐藏款的概率都是 1/72。你可以一个一个开，也可以一口气开 72 个，看看自己的运气怎么样。</p>
+    <div class="btns">
+      <button id="one" type="button">开 1 个</button>
+      <button id="many" class="alt" type="button">一口气开 72 个</button>
+      <button id="reset" class="ghost" type="button">重来</button>
+    </div>
+    <div class="result" id="result" aria-live="polite">
+      <div class="chipbox" id="chip"></div>
+      <div class="txt" id="txt">还没开盒<span>点上面的按钮开始</span></div>
+    </div>
+    <div class="grid" id="grid" aria-hidden="true"></div>
+    <div class="stats">
+      <div class="pill">已开 <b id="opened">0</b> 个</div>
+      <div class="pill">隐藏款 <b id="hits">0</b> 个</div>
+    </div>
+  </section>
+
+  <footer>
+    <p>测试版 · 2026 年 10 月。如果你能看到这一页，而且上面的按钮点了有反应，说明这个网站在你现在的网络下可以正常打开。</p>
+    <p class="ok" id="jsok" hidden>✓ 页面脚本运行正常</p>
+    <div class="club">ECONOMICS &amp; STATISTICS CLUB</div>
+  </footer>
+</main>
+<script>
+  (function () {
+    var P = 1 / 72;
+    var opened = 0, hits = 0;
+    var $ = function (id) { return document.getElementById(id); };
+    var grid = $('grid'), chip = $('chip'), txt = $('txt');
+
+    function draw() { return Math.random() < P; }
+
+    function update() {
+      $('opened').textContent = opened;
+      $('hits').textContent = hits;
+    }
+
+    function show(isHidden, label, sub) {
+      chip.className = 'chipbox' + (isHidden ? ' hidden' : '');
+      txt.innerHTML = label + '<span>' + sub + '</span>';
+      var r = $('result');
+      r.classList.remove('pop'); void r.offsetWidth; r.classList.add('pop');
+    }
+
+    $('one').addEventListener('click', function () {
+      var h = draw();
+      opened += 1; if (h) hits += 1;
+      grid.innerHTML = '';
+      show(h, h ? '开出隐藏款了！' : '普通款', '这是你开的第 ' + opened + ' 个');
+      update();
+    });
+
+    $('many').addEventListener('click', function () {
+      var html = '', got = 0;
+      for (var i = 0; i < 72; i++) {
+        var h = draw();
+        if (h) got += 1;
+        html += '<i' + (h ? ' class="hidden"' : '') + '></i>';
+      }
+      opened += 72; hits += got;
+      grid.innerHTML = html;
+      show(got > 0, '这 72 个里开出了 ' + got + ' 个隐藏款', '彩色的格子就是隐藏款');
+      update();
+    });
+
+    $('reset').addEventListener('click', function () {
+      opened = 0; hits = 0; grid.innerHTML = '';
+      show(false, '还没开盒', '点上面的按钮开始');
+      update();
+    });
+
+    $('jsok').hidden = false;
+  })();
+</script>
+</body>
+</html>
