@@ -70,6 +70,9 @@
   .pill { border: 2px solid var(--line); border-radius: 999px; padding: 4px 12px; font-size: 14px; font-weight: 700; background: #fff; }
   .pop { animation: pop .28s ease-out; }
   @keyframes pop { from { transform: scale(.92); opacity: .4; } to { transform: scale(1); opacity: 1; } }
+  a.card.game { display: block; color: inherit; text-decoration: none; }
+  a.card.game .row { align-items: flex-start; }
+  a.card.game .go { display: inline-block; margin-top: 12px; margin-left: 62px; font-weight: 700; font-size: 15px; background: var(--ink); color: #fff; border-radius: 999px; padding: 10px 18px; }
   footer { margin-top: 26px; padding-top: 16px; border-top: 1px solid var(--line); }
   footer p { font-size: 13px; color: var(--ink-2); }
   footer .club { font-size: 11px; letter-spacing: .24em; color: var(--ink-3); font-weight: 600; margin-top: 8px; }
@@ -83,91 +86,22 @@
   <h1>互动实验室<small>Interactive Lab</small></h1>
   <p class="lead">这里会放每期社团课用到的小游戏和小工具，打开手机浏览器就能玩，课后也可以随时回来再试一次。</p>
 
-  <section class="card">
+  <a class="card game" href="./05/">
     <div class="row">
       <div class="badge">05</div>
-      <div>
-        <h2>第 05 期 · 盲盒卖家模拟器</h2>
-        <p class="muted">正在制作中，11 月 5 日社团课上见。</p>
+      <div style="flex:1">
+        <h2>第 05 期 · 零食派对盲盒卖家模拟器</h2>
+        <p class="muted">11 月 5 日社团课用。你有 2 万元本金，在 10 周里买盒、开盒、卖货，看看最后是赚是亏；课后可以选随机剧本再玩。</p>
       </div>
     </div>
-  </section>
-
-  <section class="card" id="lab">
-    <h2>先来试试手气</h2>
-    <p>这里的每个盲盒，开出隐藏款的概率都是 1/72。你可以一个一个开，也可以一口气开 72 个，看看自己的运气怎么样。</p>
-    <div class="btns">
-      <button id="one" type="button">开 1 个</button>
-      <button id="many" class="alt" type="button">一口气开 72 个</button>
-      <button id="reset" class="ghost" type="button">重来</button>
-    </div>
-    <div class="result" id="result" aria-live="polite">
-      <div class="chipbox" id="chip"></div>
-      <div class="txt" id="txt">还没开盒<span>点上面的按钮开始</span></div>
-    </div>
-    <div class="grid" id="grid" aria-hidden="true"></div>
-    <div class="stats">
-      <div class="pill">已开 <b id="opened">0</b> 个</div>
-      <div class="pill">隐藏款 <b id="hits">0</b> 个</div>
-    </div>
-  </section>
+    <span class="go">进入游戏 →</span>
+  </a>
 
   <footer>
-    <p>测试版 · 2026 年 10 月。如果你能看到这一页，而且上面的按钮点了有反应，说明这个网站在你现在的网络下可以正常打开。</p>
-    <p class="ok" id="jsok" hidden>✓ 页面脚本运行正常</p>
+    <p>这里的每个小游戏都是一个网页，不用下载，打开手机浏览器就能玩。</p>
     <div class="club">ECONOMICS &amp; STATISTICS CLUB</div>
   </footer>
 </main>
-<script>
-  (function () {
-    var P = 1 / 72;
-    var opened = 0, hits = 0;
-    var $ = function (id) { return document.getElementById(id); };
-    var grid = $('grid'), chip = $('chip'), txt = $('txt');
 
-    function draw() { return Math.random() < P; }
-
-    function update() {
-      $('opened').textContent = opened;
-      $('hits').textContent = hits;
-    }
-
-    function show(isHidden, label, sub) {
-      chip.className = 'chipbox' + (isHidden ? ' hidden' : '');
-      txt.innerHTML = label + '<span>' + sub + '</span>';
-      var r = $('result');
-      r.classList.remove('pop'); void r.offsetWidth; r.classList.add('pop');
-    }
-
-    $('one').addEventListener('click', function () {
-      var h = draw();
-      opened += 1; if (h) hits += 1;
-      grid.innerHTML = '';
-      show(h, h ? '开出隐藏款了！' : '普通款', '这是你开的第 ' + opened + ' 个');
-      update();
-    });
-
-    $('many').addEventListener('click', function () {
-      var html = '', got = 0;
-      for (var i = 0; i < 72; i++) {
-        var h = draw();
-        if (h) got += 1;
-        html += '<i' + (h ? ' class="hidden"' : '') + '></i>';
-      }
-      opened += 72; hits += got;
-      grid.innerHTML = html;
-      show(got > 0, '这 72 个里开出了 ' + got + ' 个隐藏款', '彩色的格子就是隐藏款');
-      update();
-    });
-
-    $('reset').addEventListener('click', function () {
-      opened = 0; hits = 0; grid.innerHTML = '';
-      show(false, '还没开盒', '点上面的按钮开始');
-      update();
-    });
-
-    $('jsok').hidden = false;
-  })();
-</script>
 </body>
 </html>
